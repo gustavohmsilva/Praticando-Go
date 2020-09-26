@@ -10,4 +10,4 @@ Valor em milhas, número
 Valor em kilômetros
 
 ## Fórmula   
-$$ m = m * 1609 $$
+$$ Km = m * 1.609 $$
