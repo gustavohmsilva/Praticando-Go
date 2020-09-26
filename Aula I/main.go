@@ -8,7 +8,8 @@ func milesToKm(m float32) float32 {
 
 func main() {
 	var miles float32
+	fmt.Printf("Digite a distância em Milhas")
 	fmt.Scanf("%f\n", &miles)
 	km := milesToKm(miles)
-	fmt.Printf("%.5f\n", km)
+	fmt.Printf("Distância convertida para quilômetros: %.5f\n", km)
 }
