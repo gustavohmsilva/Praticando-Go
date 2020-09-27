@@ -6,21 +6,21 @@ Seu cliente é uma rede de mercados e eles decidiram comprar uma máquina que ca
 
 ## Entrada de dados:
 
-Valor em moedas de 1 cêntimo, número
+Quantidade de moedas de 1 cêntimo, número
 
-Valor em moedas de 2 cêntimos, número
+Quantidade de moedas de 2 cêntimos, número
 
-Valor em moedas de 5 cêntimos, número
+Quantidade de moedas de 5 cêntimos, número
 
-Valor em moedas de 10 cêntimos, número
+Quantidade de moedas de 10 cêntimos, número
 
-Valor em moedas de 20 cêntimos, número
+Quantidade de moedas de 20 cêntimos, número
 
-Valor em moedas de 50 cêntimos, número
+Quantidade de moedas de 50 cêntimos, número
 
-Valor em moedas de 1 Euro, número
+Quantidade de moedas de 1 Euro, número
 
-Valor em moedas de 2 Euros, Número
+Quantidade de moedas de 2 Euros, Número
 
 ## Saída de dados:
 
