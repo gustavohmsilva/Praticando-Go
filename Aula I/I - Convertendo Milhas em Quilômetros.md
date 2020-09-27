@@ -11,3 +11,6 @@ Valor em kilômetros
 
 ## Fórmula   
 $$ Km = m * 1.609 $$
+
+## Observação
+Usei float64 em tudo, pois usando float32 tive problemas em arredondamento na hora dos testes.
