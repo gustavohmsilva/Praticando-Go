@@ -23,5 +23,5 @@ func main() {
 	fmt.Scanf("%f\n", &medidas.grossCordaSisal)
 
 	resultado := calculaMetragem(medidas)
-	fmt.Printf("Será necessário %.1f Metros de corda de sisal por arranhador", resultado)
+	fmt.Printf("Será necessário %.1f Metros de corda de sisal por arranhador\n", resultado)
 }
