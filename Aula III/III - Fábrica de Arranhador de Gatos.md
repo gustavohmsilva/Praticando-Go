@@ -24,3 +24,9 @@ $$
 QtdC = (comp / gross) * (2π * (diam/2))
 $$
 
+## Valores Aproximados
+
+Comprimento: 60cm   
+Grossura da corda: 0.5cm   
+Diâmetro: 20cm   
+Consumo aproximado: Entre setenta e oitenta metros   
