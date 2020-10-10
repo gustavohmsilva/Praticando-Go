@@ -7,7 +7,7 @@ Uma fábrica de material de construção gostaria de calcular o preço do frete 
 ## Entrada de dados:
 Grossura da Arruela em centímetros, número   
 Diâmetro externo da Arruela em centímetros, número   
-Diâmnetro interno da Arruela em centímetros, número   
+Diâmetro interno da Arruela em centímetros, número   
 Quantidade de Arruelas, número   
 Valor do Frete por quilograma   
 
