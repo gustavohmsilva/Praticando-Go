@@ -10,9 +10,7 @@ Lista de pesos, sem tamanho determinado
 ## Saída de dados:   
 Um peso apenas, representando o peso médio dentre todos os pesos supridos   
 
-## Fórmulas
-
-Volume do cilindro:   
+## Fórmulas  
 $$
 W = (W1 + W2 + ... + Wn) / n
 $$
@@ -22,5 +20,5 @@ $$
 Lista de pesos: 60,1 58,3 82,1 62,8 75,6   
 Resultado esperado: 67.78  
 
-Lista de pesos: 45,8 55,6 68,4 50,0 65,2 47,3 48,6 50,2
+Lista de pesos: 45,8 55,6 68,4 50,0 65,2 47,3 48,6 50,2   
 Resultado esperado: 53,8875
