@@ -24,7 +24,7 @@ Peso por volume do aço: 7,8 gramas por Centímetro Cúbico
 
 Volume do cilindro:   
 $$
-V = π * (D² - d²) / 4
+V = π * h * (R²−r²)
 $$
 
 
