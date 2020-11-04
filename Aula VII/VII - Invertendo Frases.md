@@ -1,4 +1,4 @@
-# VI - Invertendo Frases
+# VII - Invertendo Frases
 
 ## O problema:
 
