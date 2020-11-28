@@ -1,12 +1,11 @@
 # X - Lendo Arquivos CSV (Comma-Separated Values)
 
 ## O problema:   
-Você finalmente foi aprovado para a posição para o qual fez a entrevista e sua primeira tarefa é começar a implementar um pequeno ***Projeto***, composto por várias partes, que a partir deste momento, chamaremos ***Stories***.   
 Nesta segunda ***Story*** do seu projeto para a empresa no qual foi contratado, o cliente escreveu que o package desenvolvido na ***Story*** anterior deve dar suporte não somente a arquivos de texto liso, como devem também dar suporte a arquivos em outros formatos. O formato de arquivo da vez é o [CSV](https://pt.wikipedia.org/wiki/Comma-separated_values). Abaixo é possível ver o ***mockup*** do formato CSV:   
    
 ```
-NOME, CATEGORIA, DESCRICAO   
-Produto 1, Categoria 1, "Descrição do Produto 1, contendo diversos tipos de caracteres, inclusive vírgulas!"   
+NOME,CATEGORIA,DESCRICAO   
+Produto 1,Categoria 1,"Descrição do Produto 1, contendo diversos tipos de caracteres, inclusive vírgulas!"
 ```   
 
 ## Entrada de dados:    
