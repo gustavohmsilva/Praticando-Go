@@ -1,17 +1,17 @@
 package config
 
-import (
-	"fmt"
+import "github.com/spf13/viper"
 
-	"github.com/spf13/viper"
-)
-
-// Load the configuration from a config file.
-func Load() {
-	viper.SetConfigFile("config")
-	viper.AddConfigPath(".")
-	err := viper.ReadInConfig()
+// Load is a func that returns the configuration fetched from the configuration
+// file.
+func Load() (*viper.Viper, error) {
+	conf := viper.GetViper()
+	conf.AddConfigPath(".")
+	conf.SetConfigFile("configuration")
+	conf.SetConfigType("yaml")
+	err := conf.ReadInConfig()
 	if err != nil {
-		panic(fmt.Errorf("Error reading config file: %s", err))
+		return nil, err
 	}
+	return conf, nil
 }

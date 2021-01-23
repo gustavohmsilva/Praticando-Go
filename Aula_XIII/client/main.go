@@ -6,14 +6,16 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gustavohmsilva/Praticando-Go/Aula_XI/dataparser"
 	"github.com/gustavohmsilva/Praticando-Go/Aula_XIII/client/config"
-	"github.com/spf13/viper"
+	"github.com/gustavohmsilva/Praticando-Go/Aula_XIII/client/dataparser"
 )
 
 func main() {
-	config.Load()
-	f, err := dataparser.Read(viper.GetString("filename"))
+	conf, err := config.Load()
+	if err != nil {
+		panic(err)
+	}
+	f, err := dataparser.Read(conf.GetString("filename"))
 	if err != nil {
 		panic(err)
 	}
@@ -26,7 +28,7 @@ func main() {
 		panic(err)
 	}
 	response, err := http.Post(
-		viper.GetString("server"),
+		conf.GetString("endpoint"),
 		"application/json",
 		bytes.NewBuffer(jsonPs),
 	)
