@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gustavohmsilva/Praticando-Go/Aula_XI/dataparser"
 	"github.com/gustavohmsilva/Praticando-Go/Aula_XIII/client/config"
-	"github.com/gustavohmsilva/Praticando-Go/Aula_XIII/client/dataparser"
 	"github.com/spf13/viper"
 )
 
