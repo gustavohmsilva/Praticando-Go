@@ -12,13 +12,14 @@ import (
 	"github.com/gustavohmsilva/Praticando-Go/Aula_XIV/client/dataparser"
 )
 
-// UplRequestSrc define the necessary data for a file upload HTTP Request to be
-// created
+// UplRequestSrc define the necessary data for a file upload http request to be
+// created.
 type UplRequestSrc struct {
 	Endpoint      string
 	FileParameter string
 	Path          string
 	FileName      string
+	Status        error
 }
 
 // NewUplRequestSrc create a populated UplRequestSrc object
@@ -30,7 +31,7 @@ func NewUplRequestSrc(
 	if _, err := url.ParseRequestURI(uri); err != nil {
 		return UplRequestSrc{}, err
 	}
-	f, err := dataparser.Read(fmt.Sprintf("%s%s", path, fileName))
+	f, err := dataparser.Read(fmt.Sprintf("%s/%s", path, fileName))
 	f.Close()
 	if err != nil {
 		return UplRequestSrc{}, err
@@ -38,13 +39,13 @@ func NewUplRequestSrc(
 	if fileParam == "" {
 		return UplRequestSrc{}, fmt.Errorf("fileParam is mandatory")
 	}
-	return UplRequestSrc{uri, fileParam, path, fileName}, nil
+	return UplRequestSrc{uri, fileParam, path, fileName, nil}, nil
 }
 
-// NewFileReq create a http request with the necessary data to upload a file to
+// NewFileReq creates a http request with the necessary data to upload a file to
 // a server over http
 func NewFileReq(source UplRequestSrc) (*http.Request, error) {
-	f, err := os.Open(fmt.Sprintf("%s%s", source.Path, source.FileName))
+	f, err := os.Open(fmt.Sprintf("%s/%s", source.Path, source.FileName))
 	if err != nil {
 		return &http.Request{}, err
 	}

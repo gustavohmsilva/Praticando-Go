@@ -35,7 +35,9 @@ func main() {
 	)
 	status := response.StatusCode
 	fmt.Println(status, response.Body)
+
 	path := fmt.Sprintf("%s/", conf.GetString("images_path"))
+	var files []uploader.UplRequestSrc
 	for _, p := range ps {
 		fileToUpload, err := uploader.NewUplRequestSrc(
 			conf.GetString("image_endpoint"),
@@ -44,22 +46,23 @@ func main() {
 			p.Image,
 		)
 		if err != nil {
-			fmt.Printf(err.Error())
+			fileToUpload.Status = err
+			files = append(files, fileToUpload)
 			continue
 		}
 		req, err := uploader.NewFileReq(fileToUpload)
 		if err != nil {
-			fmt.Printf(err.Error())
+			fileToUpload.Status = err
+			files = append(files, fileToUpload)
 			continue
 		}
-		resp, err := http.DefaultClient.Do(req)
+		res, err := http.DefaultClient.Do(req)
 		if err != nil {
+			fileToUpload.Status = err
+			files = append(files, fileToUpload)
 			fmt.Printf(err.Error())
 			continue
 		}
-		fmt.Println(resp.StatusCode)
-	}
-	if err != nil {
-		panic(err)
+		fmt.Println(res.StatusCode, res.Body)
 	}
 }
