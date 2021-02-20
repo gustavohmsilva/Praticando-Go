@@ -5,7 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"runtime"
+	"strconv"
 	"sync"
+	"time"
 
 	"github.com/gustavohmsilva/Praticando-Go/Aula_XIV/client/config"
 	"github.com/gustavohmsilva/Praticando-Go/Aula_XIV/client/dataparser"
@@ -17,6 +20,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	maxProcs, err := strconv.Atoi(conf.GetString("max_procs"))
+	if err != nil {
+		panic(err)
+	}
+	runtime.GOMAXPROCS(maxProcs)
 	f, err := dataparser.Read(conf.GetString("filename"))
 	if err != nil {
 		panic(err)
@@ -36,8 +44,8 @@ func main() {
 	)
 	status := response.StatusCode
 	fmt.Println(status, response.Body)
-
 	path := fmt.Sprintf("%s/", conf.GetString("images_path"))
+	startTime := time.Now()
 	var wg sync.WaitGroup
 	wg.Add(len(ps))
 	for _, p := range ps {
@@ -59,4 +67,5 @@ func main() {
 		}(conf.GetString("image_endpoint"), path, p.Image, &wg)
 	}
 	wg.Wait()
+	fmt.Println(time.Since(startTime))
 }
