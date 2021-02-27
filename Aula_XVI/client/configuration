@@ -1,0 +1,5 @@
+filename: sample_test_product.csv
+endpoint: http://localhost:8080/product
+images_path: /home/john/go/src/github.com/gustavohmsilva/Praticando-Go/Aula_XVI/client
+image_endpoint: http://localhost:8080/image
+max_procs: 12
