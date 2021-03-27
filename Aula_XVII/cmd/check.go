@@ -12,11 +12,15 @@ const (
 	FILE = "file"
 	// HASHEADER is the name of the flag for the CSV header
 	HASHEADER = "header"
+	// IMGPATH is the name of the flat that receives the images path
+	// location
+	IMGPATH = "images"
 )
 
 var (
 	file      string
 	hasHeader bool
+	imgPath   string
 )
 
 // checkCmd represents the check command
@@ -34,7 +38,11 @@ csv file to be used by the jamjam store`,
 		if err != nil {
 			return err
 		}
-		return checkCSVFile(fileName, hasH)
+		imgsPath, err := getImagesPath(cmd)
+		if err != nil {
+			return err
+		}
+		return checkCSVFile(fileName, hasH, imgsPath)
 	},
 }
 
@@ -55,6 +63,21 @@ func init() {
 		"If the CSV file has a col title header or not",
 	)
 	checkCmd.MarkFlagRequired(FILE)
+	checkCmd.Flags().StringVarP(
+		&imgPath,
+		IMGPATH,
+		string(IMGPATH[0]),
+		"",
+		"Mandatory path where the images from the CSV are located",
+	)
+}
+
+func getImagesPath(c *cobra.Command) (string, error) {
+	imagesPath, err := c.Flags().GetString(IMGPATH)
+	if err != nil {
+		return "", err
+	}
+	return imagesPath, nil
 }
 
 func getFilename(c *cobra.Command) (string, error) {
@@ -73,7 +96,7 @@ func getHasHeader(c *cobra.Command) (bool, error) {
 	return header, nil
 }
 
-func checkCSVFile(f string, hasH bool) error {
+func checkCSVFile(f string, hasH bool, imgsPath string) error {
 	file, err := dataparser.Read(f)
 	if err != nil {
 		return err
@@ -85,6 +108,9 @@ func checkCSVFile(f string, hasH bool) error {
 	adder := 1
 	if hasH {
 		adder++
+	}
+	if string(imgsPath[len(imgsPath)-1]) != "/" {
+		imgsPath = fmt.Sprintf("%s/", imgsPath)
 	}
 	for index, product := range products {
 		if product.Name == "" {
@@ -111,7 +137,8 @@ func checkCSVFile(f string, hasH bool) error {
 				index+adder,
 			)
 		}
-		if _, err := dataparser.Read(product.Image); err != nil { //TODO: don't forget to concatenate images path with image name!
+		p := fmt.Sprintf("%s%s", imgsPath, product.Image)
+		if _, err := dataparser.Read(p); err != nil {
 			fmt.Printf(
 				"Image of row %d couldn't be found or open\n",
 				index+adder,
