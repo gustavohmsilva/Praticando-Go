@@ -7,22 +7,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	// FILE is name of the file flag
-	FILE = "file"
-	// HASHEADER is the name of the flag for the CSV header
-	HASHEADER = "header"
-	// IMGPATH is the name of the flat that receives the images path
-	// location
-	IMGPATH = "images"
-)
-
-var (
-	file      string
-	hasHeader bool
-	imgPath   string
-)
-
 // checkCmd represents the check command
 var checkCmd = &cobra.Command{
 	Use:   "check",
@@ -70,30 +54,6 @@ func init() {
 		"",
 		"Mandatory path where the images from the CSV are located",
 	)
-}
-
-func getImagesPath(c *cobra.Command) (string, error) {
-	imagesPath, err := c.Flags().GetString(IMGPATH)
-	if err != nil {
-		return "", err
-	}
-	return imagesPath, nil
-}
-
-func getFilename(c *cobra.Command) (string, error) {
-	fileName, err := c.Flags().GetString(FILE)
-	if err != nil {
-		return "", err
-	}
-	return fileName, nil
-}
-
-func getHasHeader(c *cobra.Command) (bool, error) {
-	header, err := c.Flags().GetBool(HASHEADER)
-	if err != nil {
-		return false, err
-	}
-	return header, nil
 }
 
 func checkCSVFile(f string, hasH bool, imgsPath string) error {

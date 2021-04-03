@@ -14,7 +14,22 @@ import (
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
+const (
+	// FILE is name of the file flag
+	FILE = "file"
+	// HASHEADER is the name of the flag for the CSV header
+	HASHEADER = "header"
+	// IMGPATH is the name of the flat that receives the images path
+	// location
+	IMGPATH = "images"
+)
+
+var (
+	file      string
+	hasHeader bool
+	imgPath   string
+	cfgFile   string
+)
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
