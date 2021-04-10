@@ -1,8 +1,13 @@
 package cmd
 
 import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
 	"uploader/dataparser"
 
+	"github.com/gustavohmsilva/Praticando-Go/Aula_XVII/client/config"
 	"github.com/spf13/cobra"
 )
 
@@ -83,7 +88,24 @@ func fetchProducts(f string, hasH bool) ([]dataparser.Product, error) {
 }
 
 func sendProductInfo(ps []dataparser.Product) error {
-	// Proccess delivery of text data to store
+	conf, err := config.Load()
+	if err != nil {
+		panic(err)
+	}
+	jsonPs, err := json.Marshal(ps)
+	if err != nil {
+		panic(err)
+	}
+	response, err := http.Post(
+		conf.GetString("endpoint"),
+		"application/json",
+		bytes.NewBuffer(jsonPs),
+	)
+	if err != nil {
+		panic(err)
+	}
+	status := response.StatusCode
+	fmt.Println(status, response.Body)
 	return nil
 }
 
